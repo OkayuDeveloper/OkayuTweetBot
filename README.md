@@ -19,6 +19,7 @@
 #### Reference
 
 > https://github.com/twintproject/twint
+
 > https://github.com/richardchien/nonebot
 
 #### 安装方法
@@ -31,8 +32,8 @@
 
 ### 总体设计
 
-- 参见环境
+- 参见“环境”
 
 ### 维护
 
--爷也不知道咋写 摸了
+- 爷也不知道咋写 摸了
