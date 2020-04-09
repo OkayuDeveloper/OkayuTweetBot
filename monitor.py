@@ -18,7 +18,7 @@ class twitterInfo(object):
         self.address, self.date, self.time, self.timezone, self.username, self.content = line.split(' ',5)
     def __repr__(self):
         if self.username = "<nekomataokayu>":
-            return("小粥在{0} {1}发布了新推特：{2}\N原推特地址为：{3}".format(self.time,self.date,self.content))
+            return("小粥在{0} {1}发布了新推特：\N{2}\N原推特地址为：{3}".format(self.time,self.date,self.content))
         else:
             return("===暂不支持其他用户===")
     def __str__(self):
@@ -77,7 +77,10 @@ def main():
     newTweet = get_new_twitter()
     flag = False
     #Have Something New
-    if (not oldTweet.tList) or (not newTweet.tList) or (oldTweet.tList[-1].address != newTweet.tList[-1].address):
+    if  (not newTweet.tList) :
+        #second day
+        os.system("rm newTweet.txt")
+    elif (not oldTweet.tList) or (oldTweet.tList[-1].address != newTweet.tList[-1].address):
     #     # 返回一个变更
         flag = True
         oldTweet = newTweet
