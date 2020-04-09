@@ -1,5 +1,6 @@
 import requests
 import random
+import twint
 
 def get_content():
     url = 'http://open.iciba.com/dsapi/'
@@ -10,3 +11,8 @@ def get_content():
 
 def random_numerial_command():
     pass
+
+def get_daily_tweet():
+    c = twint.Config()
+    c.Username = 'nekomataokayu'
+    c

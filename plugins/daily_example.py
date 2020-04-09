@@ -1,5 +1,5 @@
 from nonebot import on_command, CommandSession
-from utils import get_content
+from utils import *
 
  #@on_command('daily', aliases=('每日一句',))
 
