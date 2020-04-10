@@ -2,7 +2,8 @@ import twint
 import os
 import time
 import datetime
-
+import random
+import math
 monitor_user = 'nekomataokayu'
 #monitor_user = 'Cyame1121'
 
@@ -11,18 +12,21 @@ class twitterList:
         self.tList = list(inlist)
         pass
 
+
 class twitterInfo(object):
     """docstring fortwitterInfo."""
 
     def __init__(self, line):
         self.address, self.date, self.time, self.timezone, self.username, self.content = line.split(' ',5)
+        self.id = hex(int(self.address))[10:]
+
     def __repr__(self):
-        if self.username = "<nekomataokayu>":
-            return("小粥在{0} {1}发布了新推特：\N{2}\N原推特地址为：{3}".format(self.time,self.date,self.content))
+        if self.username == "<nekomataokayu>":
+            return("{0} 小粥在{1} {2}发布了新推特：".format(self.id, self.date, self.time)+"\n"+r"{0}".format(self.content)+"==============\n原推特地址为：\n"+r"http://https://twitter.com/{0}/status/{1}".format(self.username[1:-1],self.address))
         else:
             return("===暂不支持其他用户===")
     def __str__(self):
-        return __repr__(self)
+        return repr(self)
 
 
 
@@ -71,18 +75,30 @@ def get_old_twitter():
                 tempTweet = twitterInfo(line)
                 oldTweet.tList.append(tempTweet)
     return oldTweet
-
+def compare(oldTweetList,newTweetList):
+    updateList = []
+    addressList = []
+    for oldTweet in oldTweetList.tList:
+        addressList.append(oldTweet.address)
+    for tweet in newTweetList.tList:
+        if not tweet.address in addressList:
+            #New
+            updateList.append(tweet)
+    updateTweet = twitterList(updateList)
+    return updateTweet
 def main():
     oldTweet = get_old_twitter()
     newTweet = get_new_twitter()
-    flag = False
+    #flag = False
     #Have Something New
+    updateTweet = twitterList([])
     if  (not newTweet.tList) :
         #second day
         os.system("rm newTweet.txt")
     elif (not oldTweet.tList) or (oldTweet.tList[-1].address != newTweet.tList[-1].address):
     #     # 返回一个变更
-        flag = True
+        #flag = True
+        updateTweet = compare(oldTweet,newTweet)
         oldTweet = newTweet
         os.system("rm oldTweet.txt")
         os.system("mv newTweet.txt oldTweet.txt")
@@ -90,12 +106,15 @@ def main():
     #     pass
     else:
         os.system("rm newTweet.txt")
-    return flag,oldTweet
+    return updateTweet, oldTweet
     #     # silence & keep
     #     pass
     # get_new_twitter()
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #flag = F 没更新 flag = T 更新了
-    flag, oldTweet = main()
+# updateTweet, oldTweet = main()
+# if updateTweet:
+#     print("UPDATE {0} tweets!".format(len(updateTweet.tList)))
+#     print(updateTweet.tList[0])
     #print(flag, oldTweet)

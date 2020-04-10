@@ -12,6 +12,7 @@ async def daily(session: CommandSession):
 async def get_daily():
     daily_sentence = get_content()
     return daily_sentence
+
 @on_command('草')
 async def kusa(session: CommandSession):
     await session.send("草")
