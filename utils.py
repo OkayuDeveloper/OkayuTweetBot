@@ -12,7 +12,4 @@ def get_content():
 def random_numerial_command():
     pass
 
-def get_daily_tweet():
-    c = twint.Config()
-    c.Username = 'nekomataokayu'
-    c
+

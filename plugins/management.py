@@ -3,10 +3,11 @@ from aiocqhttp import *
 
 bot = nonebot.get_bot()
 function_press = True
-valid_group = :1094163087
+valid_group = 1094163087
 
-@on_command("admin", aliases = ("管理员",), only_to_me = False, privileged = True)
-def offon(arg):
+@bot.on_command("admin")
+async def offon(arg):
+    global function_press
     if function_press:
         function_press = False
     else:
@@ -29,7 +30,7 @@ async def welcome(session: NoticeSession):
     粥组欢迎你的到来！
     ''')
 
-@on_command("welcome", aliases = ("欢迎",), only_to_me = False)
+@bot.on_command("welcome", aliases = ("欢迎",))
 async def force_welcome(session: CommandSession):
     await bot.session.send('''
     欢迎新龙！！
