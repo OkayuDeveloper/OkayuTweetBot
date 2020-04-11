@@ -89,36 +89,36 @@ def compare(oldTweetList,newTweetList):
             updateList.append(tweet)
     updateTweet = twitterList(updateList)
     return updateTweet
-def main():
+def automation():
     oldTweet = get_old_twitter()
-    print("OLD TWEETER RETURNED, as",oldTweet)
+    #print("OLD TWEETER RETURNED, as",oldTweet)
     newTweet = get_new_twitter()
-    print("NEW TWEETER RETURNED, as",newTweet)
+    #print("NEW TWEETER RETURNED, as",newTweet)
     #flag = False
     #Have Something New
     updateTweet = twitterList([])
-    print("UPDATELIST INVOLVED.")
+    #print("UPDATELIST INVOLVED.")
     if  (not newTweet.tList) :
         #second day
-        print("BRANCH: Empty newTweet")
+        #print("BRANCH: Empty newTweet")
         os.system("rm newTweet.txt")
-        print("Removed text")
+        #print("Removed text")
     elif (not oldTweet.tList) or (oldTweet.tList[-1].address != newTweet.tList[-1].address):
     #     # 返回一个变更
         #flag = True
         updateTweet = compare(oldTweet,newTweet)
-        print("UpdateList generated, as",updateTweet)
+        #print("UpdateList generated, as",updateTweet)
         oldTweet = newTweet
-        print("INTERATED.")
+        #print("INTERATED.")
         os.system("rm oldTweet.txt")
-        print("RM OLD ONE")
+        #print("RM OLD ONE")
         os.system("mv newTweet.txt oldTweet.txt")
-        print("REPLACED.")
+        #print("REPLACED.")
     #     # newTweet -> oldTweet
     #     pass
     else:
         os.system("rm newTweet.txt")
-    print("=============DONE=============")
+    #print("=============DONE=============")
     return updateTweet, oldTweet
     #     # silence & keep
     #     pass
