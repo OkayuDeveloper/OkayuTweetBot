@@ -91,33 +91,35 @@ def compare(oldTweetList,newTweetList):
     return updateTweet
 def main():
     oldTweet = get_old_twitter()
+    print("OLD TWEETER RETURNED, as",oldTweet)
     newTweet = get_new_twitter()
+    print("NEW TWEETER RETURNED, as",newTweet)
     #flag = False
     #Have Something New
     updateTweet = twitterList([])
+    print("UPDATELIST INVOLVED.")
     if  (not newTweet.tList) :
         #second day
+        print("BRANCH: Empty newTweet")
         os.system("rm newTweet.txt")
+        print("Removed text")
     elif (not oldTweet.tList) or (oldTweet.tList[-1].address != newTweet.tList[-1].address):
     #     # 返回一个变更
         #flag = True
         updateTweet = compare(oldTweet,newTweet)
+        print("UpdateList generated, as",updateTweet)
         oldTweet = newTweet
+        print("INTERATED.")
         os.system("rm oldTweet.txt")
+        print("RM OLD ONE")
         os.system("mv newTweet.txt oldTweet.txt")
+        print("REPLACED.")
     #     # newTweet -> oldTweet
     #     pass
     else:
         os.system("rm newTweet.txt")
+    print("=============DONE=============")
     return updateTweet, oldTweet
     #     # silence & keep
     #     pass
     # get_new_twitter()
-
-#if __name__ == '__main__':
-    #flag = F 没更新 flag = T 更新了
-# updateTweet, oldTweet = main()
-# if updateTweet:
-#     print("UPDATE {0} tweets!".format(len(updateTweet.tList)))
-#     print(updateTweet.tList[0])
-    #print(flag, oldTweet)

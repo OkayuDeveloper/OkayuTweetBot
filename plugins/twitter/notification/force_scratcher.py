@@ -10,9 +10,11 @@ async def force_monitor(session: nonebot.CommandSession):
     bot = nonebot.get_bot()
     await session.send("===手动获取推文中，请稍候===")
     updateTweet, oldTweet = monitor.main()
+    await session.send("===已连接服务器===")
     if updateTweet.tList:
         for t in updateTweet.tList :
-            await bot.send_group_msg(group_id = valid_group, message = str(t))
+            await bot.send_group_msg(group_id= valid_group, message= "GET")
+            await bot.send_group_msg(group_id = valid_group, message = t)
             #await session.send(message=str(t))
         await("===获取新增推文完毕===")
     else:
