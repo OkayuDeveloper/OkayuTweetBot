@@ -24,7 +24,7 @@ class twitterInfo(object):
         if self.username == "<nekomataokayu>":
             return("{0} 小粥在{1} {2}发布了新推特：".format(self.id, self.date, self.time)+"\n"+r"{0}".format(self.content)+"==============\n原推特地址为：\n"+r"http://https://twitter.com/{0}/status/{1}".format(self.username[1:-1],self.address))
         else:
-            return("===暂不支持其他用户===")
+            return("===暂不支持其他用户===\n臭弟弟爬")
     def __str__(self):
         return repr(self)
 
@@ -67,6 +67,9 @@ def get_new_twitter():
 def get_old_twitter():
     # Read file
     oldTweet = twitterList([])
+    if not os.path.exists("oldTweet.txt"):
+        print("NO OLDTWEET FIND")
+        return oldTweet
     with open("oldTweet.txt",'r') as new:
         for line in new.readlines():
             if line == '\n' or line == '':

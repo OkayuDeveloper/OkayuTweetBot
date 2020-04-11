@@ -1,5 +1,4 @@
 import requests
-import random
 import twint
 
 def get_content():
@@ -9,7 +8,5 @@ def get_content():
     content_c = res.json()['note']
     return [content_c, content_e]
 
-def random_numerial_command():
-    pass
 
 
