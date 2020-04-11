@@ -54,7 +54,7 @@ def get_new_twitter():
     user = initialUser(monitor_user,yesterdayDate)
     #twint.run.Search(user)
     twint.run.Search(user)
-    with open("newTweet.txt",'r') as new:
+    with open(file = "newTweet.txt",mode='r',encoding='utf-8') as new:
         for line in new.readlines():
             if line == '\n':
                 pass
@@ -70,7 +70,7 @@ def get_old_twitter():
     if not os.path.exists("oldTweet.txt"):
         print("NO OLDTWEET FIND")
         return oldTweet
-    with open("oldTweet.txt",'r') as new:
+    with open(file = "oldTweet.txt",mode='r',encoding='utf-8') as new:
         for line in new.readlines():
             if line == '\n' or line == '':
                 pass

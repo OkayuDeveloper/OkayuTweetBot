@@ -5,7 +5,7 @@ from plugins.management.management import valid_group
 
 
 
-@nonebot.on_command('refresh', aliases = ('刷新',),only_to_me=False)
+@nonebot.on_command('refresh', aliases = ('刷新',),only_to_me=False, privileged=True)
 async def force_monitor(session: nonebot.CommandSession):
     bot = nonebot.get_bot()
     await session.send("===手动获取推文中，请稍候===")
