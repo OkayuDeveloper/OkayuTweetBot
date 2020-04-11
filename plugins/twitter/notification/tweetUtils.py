@@ -4,6 +4,7 @@ import time
 import datetime
 import random
 import math
+import traceback
 monitor_user = 'nekomataokayu'
 #monitor_user = 'Cyame1121'
 
@@ -58,6 +59,8 @@ def getTwitterFromTwint(save_file):
     targetDay = getYesterday()
     #构造搜索
     thisSearch = initialSearch(monitor_user,targetDay,save_file)
+    #RUN
+    twint.run.Search(thisSearch)
 
     return save_file
 
@@ -103,17 +106,17 @@ def File_compare(oldTweetFile,newTweetFile):
             else:  
                 oldAddressList.append(line.split()[0])
     with open(file = newTweetFile, mode='r',encoding='utf-8') as n:
-        for line in o.readlines():
+        for line in n.readlines():
             if line == '\n' or line == '':
                 continue
             else:
-                temp = twitterInfo(line)
-                if temp.address in oldAddressList:
+                temp = line.split()[0]
+                if not temp in oldAddressList:
                     #New
-                    updateTweetList.append(temp)
+                    updateTweetList.append(line)
     with open(file = update_path, mode='w',encoding='utf-8') as u:
-        for tweet in updateTweetList:
-            u.write(str(tweet))
+        for rawTweet in updateTweetList:
+            u.write(rawTweet)
     return update_path
 
 # 获取新增推特(新方法)
@@ -123,11 +126,11 @@ def get_update_twitter():
 
 # 每次生成UPDATE后迭代
 def fileIterator(oldTweetFile = 'oldTweet.txt',newTweetFile = 'newTweet.txt'):
-    os.system("mv -f newTweet.txt oldTweet.txt")
+    os.system("mv -f {0} {1}".format(newTweetFile,oldTweetFile))
 
 # 当无更新时删除新增避免重复获取
 def fileExpire(newTweetFile = 'newTweet.txt'):
-    os.system("rm newTweet.txt")
+    os.system("rm {0}".format(newTweetFile))
 
 # 获取新增推特(旧方法)
 # 读入twitterList 返回twitterList
@@ -165,10 +168,15 @@ def getProcess():
     try:
         newTweetFile = getTwitterFromTwint("newTweet.txt")
         oldTweetFile = "oldTweet.txt"
-        updateTweetFile = File_compare(oldTweetFile,newTweetFile)
+        if os.path.exists(oldTweetFile): 
+            updateTweetFile = File_compare(oldTweetFile,newTweetFile)
         fileIterator(oldTweetFile,newTweetFile)
-    except:
-        fileExpire()
+    except BaseException:
+        print(BaseException)
+        traceback.print_exc()
+        if os.path.exists(newTweetFile):
+            fileExpire(newTweetFile)
+            
         return False
 
     return True
