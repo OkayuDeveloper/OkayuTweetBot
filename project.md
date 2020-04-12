@@ -1,3 +1,5 @@
+## 工程文档
+
 ### 问题定义
 
 #### 系统功能
@@ -27,7 +29,7 @@
 
 `pip install twint`
 
-`pip install nonebot`
+`pip install nonebot[scheduler]`
 
 - CoolQ需要用Git下
 ### 开发进度
