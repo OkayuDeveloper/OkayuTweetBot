@@ -17,12 +17,12 @@
 #### 关于本项目
 ##### 项目相关文档（待完善）
 [工程说明](./project.md)
-[Linux/服务器/UNIX上的部署文档](./部署CoolQ.md)
+[Linux/服务器/UNIX上的部署文档](./部署coolQ.md)
 [当前开发进度及潜在问题](./progress.md)
 [测试文档](./test.md)
-[MIT License](.LICENSE.md)
+[MIT License](./LICENSE.md)
 ##### 依赖
-本项目依赖于[nonebot]与twint，感谢二位开发者的贡献。
+本项目依赖于[nonebot](twintproject)与[twint](twintproject)，感谢二位开发者的贡献。
 
 项目内使用定时监控，如需添加nonebot依赖，请使用
 `pip install 'nonebot[scheduler]'`
