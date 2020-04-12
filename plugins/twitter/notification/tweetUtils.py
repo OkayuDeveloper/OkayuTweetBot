@@ -90,7 +90,10 @@ def get_new_twitter():
 # 获取新推特(旧方法重构)
 def get_old_twitter():
     # Read file
-    oldTweetList = configTwitterFromFile("oldTweet.txt")
+    if os.path.exists("oldTweet.txt"):
+        oldTweetList = configTwitterFromFile("oldTweet.txt")
+    else:
+        return twitterList([])
     return oldTweetList
 
 # 获取新增推特(新方法：从文件)
@@ -121,7 +124,7 @@ def File_compare(oldTweetFile,newTweetFile):
 
 # 获取新增推特(新方法)
 def get_update_twitter():
-    updateTweetList = configTwitterFromFile("update.txt")
+    updateTweetList = configTwitterFromFile("updateTweet.txt")
     return updateTweetList
 
 # 每次生成UPDATE后迭代
@@ -165,17 +168,21 @@ def automation():
 
 # 获取过程
 def getProcess():
+    newTweetFile = ''
+    oldTweetFile = ''
     try:
         newTweetFile = getTwitterFromTwint("newTweet.txt")
         oldTweetFile = "oldTweet.txt"
         if os.path.exists(oldTweetFile): 
             updateTweetFile = File_compare(oldTweetFile,newTweetFile)
         fileIterator(oldTweetFile,newTweetFile)
+
     except BaseException:
         print(BaseException)
         traceback.print_exc()
         if os.path.exists(newTweetFile):
             fileExpire(newTweetFile)
+
             
         return False
 
