@@ -47,25 +47,39 @@
 > twint_scratcher 旧定时获取器
 
 
-##注记
+## 注记
 
 当前框架和4-11以前的框架有了较大区别，目的是为了解决获取时session提前关闭导致无法返回的问题
-####旧获取流程
+
+#### 旧获取流程
 - 使用 monitor_auto + twint_scratcher
 
 twint_scratcher定期被调用
+
 ↓
+
 twint_scratcher调用montior_auto中的方法
+
 ↓
+
 从twint获取更新
+
 ↓
+
 比对oldTweet.txt中缓存 获取updateList
+
 ↓
+
 更新oldTweet.txt 将新获取的推特注入缓存
+
 ↓
+
 返回updateList和oldList对象
+
 ↓
+
 返回到twint_scratcher之后通过CQHTTP返回
+
 
 #### 新获取流程
 ##### 将获取和返回分离
