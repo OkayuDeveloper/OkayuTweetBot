@@ -20,13 +20,14 @@ class MemberList:
 class Member:
     # TODO: 翻译字典
     # 名称星尘你定就好了.jpg
-    jobDict = {"Translator":"翻译","Timeline":"时轴","Effect":"特效轴","Check":"校对"}
+    jobDict = {"Translator":"翻译","Timeline":"时轴","AegEffect":"特效轴","Check":"校对","Editor":"剪辑","Retouch":"美工","Illustrator":"画师"
+    ,"Leader":"组长","Tuner":"调音","Raw":"扒源","Relay":"转播","Review":"复查","Chore":"杂务"，"AEffect","后期","Interpret":"同传","MMD":"MMD"}
     # 构造函数
     def __init__(self,line):
         content = line.split()
-        self.name = content.pop(0)
         self.id = content.pop(0)
-        self.job = content
+        self.name = (content.pop(0)).split("-")
+        self.job = (content).split("#")
     # 职位翻译为中文 输入job表 输出翻译后的job表
     def trans(self):
         trans = []
@@ -38,28 +39,60 @@ class Member:
         pass
     # 打印人员信息用
     def __str__(self):
-        return "成员={0} QQ={1} 当前职位={2}".format(self.name,self.id,self.trans())
+        return "QQ={0} 成员名&惯称={1} 当前职位={2}".format(self.id,self.name,self.trans())
     # 单独CUE人用 称呼+at
     def __repr__(self):
-        return self.name+cq(self)
+        return self.name[0]+cq(self)
     # 群CUE用 at
     def cq(self):
         return "[CQ:at,qq={1}]".format(self.id)
 # TODO: 用于获取和刷新列表
 # 后面方法构造memList请调用此方法
 def get_memberList_from_file(memberFile = 'member.txt'):
-    pass
+    memList=[]
+        with open(memberFile,'a') as f:
+            for line in f.readlines():
+                memList.append(Member(line))
+    return memList
 # TODO: 通过名字找人
 def search_by_name(memberFile = 'member.txt',name = None):
+    mL=get_memberList_from_file(memberFile))
+    flag=1
+    for member in mL:
+        for mname in member.name:
+            if mname==name:
+                flag=0
+                print("QQ={0} 成员名&惯称={1} 当前职位={2}".format(member.id,member.name,member.trans()))
+    if flag==1:
+        print("没找到这个名字的人呢，是不是被鲨了？")
     pass
 # TODO: 通过QQ号找人
 def search_by_qq(memberFile = 'member.txt',qq = None):
+    mL=get_memberList_from_file(memberFile))
+    flag=1
+    for member in mL:
+        if member.id == qq:
+            flag=0
+            print("QQ={0} 成员名&惯称={1} 当前职位={2}".format(member.id,member.name,member.trans()))
+    if flag==1:
+        print("是陌生的QQ号呢，难道是退组群进审核群了吗？")
     pass
 # TODO: 返回指定职位成员列表
 def search_by_job(memberFile = 'member.txt',job = None):
+    mL=get_memberList_from_file(memberFile))
+    flag=1
+    for member in mL:
+        for mjob in member.job:
+             if member.job == job:
+                flag=0
+                print("QQ={0} 成员名&惯称={1} 当前职位={2}".format(member.id,member.name,member.trans()))
+    if flag==1:
+        print("这个职位好像没有人啊（悲），是不是该吃人了？")
     pass
 # TODO: 添加成员
 def add_member(memberFile = 'member.txt',member = None):
+    with open(memberFile,'a') as f:
+        f.write(member)
     #直接文件IO 后同
     #文本路径可忽略 直接写member.txt就可以
     #运行测试的时候 记得使用命令py -3 -m callingUtils←作为模块加载/没有.py后缀
