@@ -11,7 +11,7 @@ class MemberList:
     def __str__(self):
         return "\n".join(str(member) for member in self.mList)
     def __repr__(self):
-        return " ".join(member.cq() for member in self.mList)
+        return " ".join(member.repr() for member in self.mList)
     def cq(self):
         return " ".join(member.cq() for member in self.mList)
 
@@ -19,9 +19,8 @@ class MemberList:
 #Member类 用于存储成员信息
 class Member:
     # TODO: 翻译字典
-    # 名称星尘你定就好了.jpg
-    jobDict = {"Translator":"翻译","Timeline":"时轴","AegEffect":"特效轴","Check":"校对","Editor":"剪辑","Retouch":"美工","Illustrator":"画师"
-    ,"Leader":"组长","Tuner":"调音","Raw":"扒源","Relay":"转播","Review":"复查","Chore":"杂务"，"AEffect","后期","Interpret":"同传","MMD":"MMD"}
+    #jobDict = {"Translator":"翻译","Timeline":"时轴","AegEffect":"特效轴","Check":"校对","Editor":"剪辑","Retouch":"美工","Illustrator":"画师"
+    #,"Leader":"组长","Tuner":"调音","Raw":"扒源","Relay":"转播","Review":"复查","Chore":"杂务"，"AEffect","后期","Interpret":"同传","MMD":"MMD"}
     # 构造函数
     def __init__(self,line):
         content = line.split()
@@ -39,7 +38,7 @@ class Member:
         pass
     # 打印人员信息用
     def __str__(self):
-        return "QQ={0} 成员名&惯称={1} 当前职位={2}".format(self.id,self.name,self.trans())
+        return "QQ={0} 可用名称={1} 当前职位={2}".format(self.id,self.name,self.trans())
     # 单独CUE人用 称呼+at
     def __repr__(self):
         return self.name[0]+cq(self)

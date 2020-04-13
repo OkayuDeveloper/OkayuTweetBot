@@ -7,6 +7,11 @@ import math
 import traceback
 monitor_user = 'nekomataokayu'
 #monitor_user = 'Cyame1121'
+class twintError(Exception):
+    def __init__(self,value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 
 # 定义一个推特列表用于存储tweet封装
 class twitterList:
@@ -106,7 +111,7 @@ def File_compare(oldTweetFile,newTweetFile):
         for line in o.readlines():
             if line == '\n' or line == '':
                 continue
-            else:  
+            else:
                 oldAddressList.append(line.split()[0])
     with open(file = newTweetFile, mode='r',encoding='utf-8') as n:
         for line in n.readlines():
@@ -173,7 +178,9 @@ def getProcess():
     try:
         newTweetFile = getTwitterFromTwint("newTweet.txt")
         oldTweetFile = "oldTweet.txt"
-        if os.path.exists(oldTweetFile): 
+        if not os.path.exits(newTweetfile):
+            raise twintError("未获取到twint推文且无状态 请检查是否被ban")
+        if os.path.exists(oldTweetFile):
             updateTweetFile = File_compare(oldTweetFile,newTweetFile)
         fileIterator(oldTweetFile,newTweetFile)
 
@@ -183,7 +190,7 @@ def getProcess():
         if os.path.exists(newTweetFile):
             fileExpire(newTweetFile)
 
-            
+
         return False
 
     return True
