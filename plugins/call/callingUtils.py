@@ -45,37 +45,38 @@ class Member:
     # 群CUE用 at
     def cq(self):
         return "[CQ:at,qq={1}]".format(self.id)
+# TODO: 用于获取和刷新列表
+# 后面方法构造memList请调用此方法
+def get_memberList_from_file(memberFile = 'member.txt'):
+    pass
 # TODO: 通过名字找人
-def search_by_name(memberList,name):
+def search_by_name(memberFile = 'member.txt',name = None):
     pass
 # TODO: 通过QQ号找人
-def search_by_qq(memberList,qq):
+def search_by_qq(memberFile = 'member.txt',qq = None):
     pass
 # TODO: 返回指定职位成员列表
-def search_by_job(memberList,job):
+def search_by_job(memberFile = 'member.txt',job = None):
     pass
 # TODO: 添加成员
-def add_member(memberFile,member):
+def add_member(memberFile = 'member.txt',member = None):
     #直接文件IO 后同
     #文本路径可忽略 直接写member.txt就可以
     #运行测试的时候 记得使用命令py -3 -m callingUtils←作为模块加载/没有.py后缀
     pass
 # TODO: 删除成员
-def remove_member(memberFile,member):
+def remove_member(memberFile = 'member.txt',member = None):
     pass
 # TODO: 添加成员职位
 # Tjob指中文名称 需要做翻译
-def add_member_job(memberFile,member,Tjob):
+def add_member_job(memberFile = 'member.txt',member = None,Tjob = None):
     pass
 # TODO: 删除成员职位
-def remove_member_job(memberFile,member,Tjob):
+def remove_member_job(memberFile = 'member.txt',member = None,Tjob = None):
     pass
 # TODO: 变更成员名称（使用上面两个方法就可以）
-def modify_member_name(memberFile,member,newName):
+def modify_member_name(memberFile = 'member.txt',member = None,newName = None):
     pass
 # TODO: 变更成员职位
-def modify_member_job(memberFile,memberList,fromTjob,toTjob):
-    pass
-# TODO: 用于获取和刷新列表
-def get_memberList_from_file(memberList,memberFile):
+def modify_member_job(memberFile = 'member.txt',member = None,fromTjob = None,toTjob = None):
     pass
