@@ -117,3 +117,21 @@ async def add_member(session: nonebot.CommandSession):
 #     message = session.get('job').split()
 #     with open("../joblist.txt", 'a') as l:
 #         l.write("{0} {1}\n".format(message[0],message[1]))
+
+@nonebot.on_command("addmember",aliases = ("添加成员",), only_to_me = False, permission = nonebot.permission.SUPERUSERS)
+async def addMember(session:nonebot.CommandSession):
+    pass
+
+@nonebot.on_command("removemember",aliases = ("删除成员"), only_to_me = False, permission = nonebot.permission.SUPERUSERS)
+async def removeMember(session:nonebot.CommandSession):
+    pass
+@nonebot.on_command("addjob",aliases = ("添加职位"), only_to_me = False, permission = nonebot.permission.SUPERUSERS)
+async def _(session:nonebot.CommandSession):
+    pass
+@nonebot.on_command("removejob",aliases = ("删除职位"), only_to_me = False, permission = nonebot.permission.SUPERUSERS)
+async def _(session:nonebot.CommandSession):
+    pass
+
+@nonebot.on_command("modjob",aliases = ("变更职位"), only_to_me = False, permission = nonebot.permission.SUPERUSERS)
+async def _(session:nonebot.CommandSession):
+    pass
