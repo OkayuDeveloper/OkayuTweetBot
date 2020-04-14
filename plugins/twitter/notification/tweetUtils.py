@@ -64,9 +64,12 @@ def getTwitterFromTwint(save_file):
     #获取昨天日期
     targetDay = getYesterday()
     #构造搜索
-    thisSearch = initialSearch(monitor_user,targetDay,save_file)
-    #RUN
-    twint.run.Search(thisSearch)
+    try:
+        thisSearch = initialSearch(monitor_user,targetDay,save_file)
+        #RUN
+        twint.run.Search(thisSearch)
+    except:
+        traceback.print_exc()
 
     return save_file
 
