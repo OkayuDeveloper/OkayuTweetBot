@@ -6,6 +6,7 @@ import datetime
 import random
 import math
 import traceback
+
 monitor_user = 'nekomataokayu'
 #monitor_user = 'Cyame1121'
 class twintError(Exception):
@@ -52,8 +53,9 @@ def initialSearch(monitor_user,current_day,save_file):
     return conf
 
 def getYesterday():
-    yesterday = datetime.date.today() + datetime.timedelta(-1)
+    yesterday = datetime.date.today() + datetime.timedelta(-7)
     #指定获取时间为昨天凌晨(避免凌晨前后推文覆盖)
+    # Release: 改为一周
     return yesterday
 
 # 利用twint包进行推特捕获
