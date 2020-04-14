@@ -185,7 +185,9 @@ def getProcess():
         newTweetFile = getTwitterFromTwint("newTweet.txt")
         oldTweetFile = "oldTweet.txt"
         if not os.path.exists(newTweetFile):
-            raise twintError("未获取到twint推文且无状态 请检查是否被ban")
+            #EMPTY
+            empty = open(newTweetFile,mode='w+',encoding='utf-8')
+            empty.close()
         if os.path.exists(oldTweetFile):
             updateTweetFile = File_compare(oldTweetFile,newTweetFile)
         fileIterator(oldTweetFile,newTweetFile)
