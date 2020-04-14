@@ -7,7 +7,7 @@ import random
 import math
 import traceback
 
-monitor_user = 'nekomataokayu'
+monitor_user = 'shirakamifubuki'
 #monitor_user = 'Cyame1121'
 class twintError(Exception):
     def __init__(self,value):
@@ -31,10 +31,10 @@ class twitterInfo(object):
         self.id = hex(int(self.address))[10:]
     #调用 用于独立作为控制台调试模块时使用
     def __repr__(self):
-        if self.username == "<nekomataokayu>":
-            return("{0} 小粥在{1} {2}发布了新推特：".format(self.id, self.date, self.time)+"\n"+r"{0}".format(self.content)+"==============\n原推特地址为：\n"+r"https://twitter.com/{0}/status/{1}".format(self.username[1:-1],self.address))
-        else:
-            return("===暂不支持其他用户===\n臭弟弟爬")#笑
+        # if self.username == "<nekomataokayu>":
+        return("{0} debuki在{1} {2}发布了新推特：".format(self.id, self.date, self.time)+"\n"+r"{0}".format(self.content)+"============\n原推特地址为：\n"+r"https://twitter.com/{0}/status/{1}".format(self.username[1:-1],self.address))
+        # else:
+        #     return("===暂不支持其他用户===\n臭弟弟爬")#笑
     #打印 返回字符串值(不做独立构造 同repr)
     def __str__(self):
         return repr(self)

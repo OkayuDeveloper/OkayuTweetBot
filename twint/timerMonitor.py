@@ -28,11 +28,11 @@ def timerMonitor():
     #返回运行状态
     print("Done: ",ifget)
     #循环调用Timer 当前时间:120s
-    timer = threading.Timer(750,timerMonitor)
+    timer = threading.Timer(300,timerMonitor)
     #开始计时
     timer.start()
 
 #脚本入口
-timer = threading.Timer(350,timerMonitor)
+timer = threading.Timer(150,timerMonitor)
 print("StartLoop")
 timer.start()
