@@ -2,7 +2,7 @@
 from plugins.management.management import valid_group
 import os
 import sys
-import file
+# import file
 
 #MemberList类 用于存储Member类
 class MemberList:
@@ -29,11 +29,11 @@ class Member:
         self.name = (content.pop(0)).split("-")
         self.job = (content).split("#")
     # 职位翻译为中文 输入job表 输出翻译后的job表
-    def trans(self):
-        trans = []
-        for j in self.job:
-            trans.append(jobDict[j])
-        return trans
+    # def trans(self):
+    #     trans = []
+    #     for j in self.job:
+    #         trans.append(jobDict[j])
+    #     return trans
     # TODO: 通过中文找英文名（用于添加成员）
     def reverse_trans(self):
         pass
@@ -50,13 +50,13 @@ class Member:
 # 后面方法构造memList请调用此方法
 def get_memberList_from_file(memberFile = 'member.txt'):
     memList=[]
-        with open(memberFile,'a') as f:
-            for line in f.readlines():
-                memList.append(Member(line))
+    with open(memberFile,'a') as f:
+        for line in f.readlines():
+            memList.append(Member(line))
     return memList
 # TODO: 通过名字找人
 def search_by_name(memberFile = 'member.txt',name = None):
-    mL=get_memberList_from_file(memberFile))
+    mL=get_memberList_from_file(memberFile)
     flag=1
     for member in mL:
         for mname in member.name:
@@ -68,7 +68,7 @@ def search_by_name(memberFile = 'member.txt',name = None):
     pass
 # TODO: 通过QQ号找人
 def search_by_qq(memberFile = 'member.txt',qq = None):
-    mL=get_memberList_from_file(memberFile))
+    mL=get_memberList_from_file(memberFile)
     flag=1
     for member in mL:
         if member.id == qq:
@@ -79,7 +79,7 @@ def search_by_qq(memberFile = 'member.txt',qq = None):
     pass
 # TODO: 返回指定职位成员列表
 def search_by_job(memberFile = 'member.txt',job = None):
-    mL=get_memberList_from_file(memberFile))
+    mL=get_memberList_from_file(memberFile)
     flag=1
     for member in mL:
         for mjob in member.job:

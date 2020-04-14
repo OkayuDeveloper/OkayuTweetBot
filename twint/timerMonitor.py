@@ -33,6 +33,6 @@ def timerMonitor():
     timer.start()
 
 #脚本入口
-timer = threading.Timer(1,timerMonitor)
+timer = threading.Timer(350,timerMonitor)
 print("StartLoop")
 timer.start()

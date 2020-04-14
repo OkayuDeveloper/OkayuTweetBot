@@ -16,6 +16,7 @@ async def _():
             for t in updateTweetList.tList:
                 await bot.send_group_msg(group_id=valid_group, message=str(t))
         else:
+            pass
             # await bot.send_group_msg(group_id=valid_group, message="No Update")
     except CQHttpError:
         print("AUTO ERROR: ", CQHttpError.with_traceback())
