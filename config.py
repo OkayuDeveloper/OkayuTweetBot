@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from nonebot.default_config import *
 
 SUPERUSERS = {1362941473}

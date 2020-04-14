@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from nonebot import on_command, CommandSession
 import random
 

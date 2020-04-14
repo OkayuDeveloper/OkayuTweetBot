@@ -1,4 +1,4 @@
-#from nonebot import on_command, CommandSession,message
+# -*- coding: UTF-8 -*-
 import nonebot
 import plugins.twitter.notification.tweetUtils as utils
 from plugins.management.management import valid_group

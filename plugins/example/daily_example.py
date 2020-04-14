@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from nonebot import on_command, CommandSession
 from plugins.example.utils import *
 
@@ -12,5 +14,3 @@ async def daily(session: CommandSession):
 async def get_daily():
     daily_sentence = get_content()
     return daily_sentence
-
-

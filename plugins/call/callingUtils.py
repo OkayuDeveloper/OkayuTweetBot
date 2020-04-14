@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from plugins.management.management import valid_group
 import os
 import sys

@@ -1,5 +1,6 @@
-import threading
+# -*- coding: UTF-8 -*-
 
+import threading
 import time
 #import CQHTTP
 import traceback

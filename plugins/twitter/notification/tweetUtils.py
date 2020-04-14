@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import twint
 import os
 import time
@@ -178,7 +179,7 @@ def getProcess():
     try:
         newTweetFile = getTwitterFromTwint("newTweet.txt")
         oldTweetFile = "oldTweet.txt"
-        if not os.path.exits(newTweetfile):
+        if not os.path.exists(newTweetFile):
             raise twintError("未获取到twint推文且无状态 请检查是否被ban")
         if os.path.exists(oldTweetFile):
             updateTweetFile = File_compare(oldTweetFile,newTweetFile)

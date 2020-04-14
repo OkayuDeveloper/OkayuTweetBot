@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import nonebot
 
 qq_yuugumo = 296172851
