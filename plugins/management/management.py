@@ -3,8 +3,7 @@ import nonebot
 import config
 from aiocqhttp import *
 import nonebot.permission as perm
-function_press = True
-valid_group = 1094163087
+from plugins.configure.configuration import *
 
 #bot = nonebot.get_bot()
 

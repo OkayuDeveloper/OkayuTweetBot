@@ -1,10 +1,7 @@
 # -*- coding: UTF-8 -*-
 import nonebot
+from plugins.configure.configuration import *
 
-qq_yuugumo = 296172851
-qq_coffee = 920239562
-qq_hibiki = 375353085
-qq_haiyu = 920337594
 
 @nonebot.on_command("夕云",aliases = ("夕雲","yuugumo","xiyun",),only_to_me = False)
 async def yuugumo(session: nonebot.CommandSession):

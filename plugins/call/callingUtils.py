@@ -1,7 +1,20 @@
 # -*- coding: UTF-8 -*-
-from plugins.management.management import valid_group
+
 import os
 import sys
+# Add for seperated test
+d = os.path.dirname(__file__)
+parent_path = os.path.dirname(d)
+home_path = os.path.dirname(parent_path)
+sys.path.append(home_path)
+'''
+
+请务必添加home_path来限制储存位置←如果愿意 可以单独建Cache文件夹之后让存储内容放在里面
+包括可以修改twint相关内容
+修改后请删除本段内容
+
+'''
+from plugins.management.management import valid_group
 # import file
 
 #MemberList类 用于存储Member类

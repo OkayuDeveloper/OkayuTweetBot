@@ -7,7 +7,7 @@ import random
 import math
 import traceback
 
-monitor_user = 'shirakamifubuki'
+monitor_user = 'nekomataokayu'
 #monitor_user = 'Cyame1121'
 class twintError(Exception):
     def __init__(self,value):
@@ -32,7 +32,7 @@ class twitterInfo(object):
     #调用 用于独立作为控制台调试模块时使用
     def __repr__(self):
         # if self.username == "<nekomataokayu>":
-        return("{0} debuki在{1} {2}发布了新推特：".format(self.id, self.date, self.time)+"\n"+r"{0}".format(self.content)+"============\n原推特地址为：\n"+r"https://twitter.com/{0}/status/{1}".format(self.username[1:-1],self.address))
+        return("{0} 小粥在{1} {2}发布了新推特：".format(self.id, self.date, self.time)+"\n"+r"{0}".format(self.content)+"============\n原推特地址为：\n"+r"https://twitter.com/{0}/status/{1}".format(self.username[1:-1],self.address))
         # else:
         #     return("===暂不支持其他用户===\n臭弟弟爬")#笑
     #打印 返回字符串值(不做独立构造 同repr)
@@ -53,7 +53,7 @@ def initialSearch(monitor_user,current_day,save_file):
     return conf
 
 def getYesterday():
-    yesterday = datetime.date.today() + datetime.timedelta(-7)
+    yesterday = datetime.date.today() + datetime.timedelta(-2)
     #指定获取时间为昨天凌晨(避免凌晨前后推文覆盖)
     # Release: 改为一周
     return yesterday
@@ -72,6 +72,7 @@ def getTwitterFromTwint(save_file):
         twint.run.Search(thisSearch)
     except:
         traceback.print_exc()
+        raise twintError("==GET ERROR==")
 
     return save_file
 

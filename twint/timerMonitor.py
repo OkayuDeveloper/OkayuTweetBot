@@ -10,7 +10,6 @@ import sys
 from os import path
 d = path.dirname(__file__)
 parent_path = path.dirname(d)
-print(sys.path)
 sys.path.append(parent_path)
 
 from plugins.management.management import valid_group

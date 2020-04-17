@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from plugins.management.management import valid_group
+from plugins.configure.configuration import *
 import nonebot
 from plugins.twitter.notification.tweetUtils import readProcess
 #import pytz
@@ -18,10 +18,10 @@ async def _():
                 limit += 1
                 get_tweet_time = datetime.datetime.strptime("{0} {1}".format(t.date,t.time),'%Y-%m-%d %H:%M:%S')
                 get_current_time = datetime.datetime.now()
-                gap = (get_current_time - get_tweet_time).seconds()
+                gap = (get_current_time - get_tweet_time).seconds
                 gap_minutes = gap // 60
                 gap_seconds = gap - 60 * gap_minutes
-                await bot.send_group_msg(group_id=valid_group, message="{0} debuki在{1}分{2}秒前发布了新推特：".format(t.id, gap_minutes, gap_seconds)+"\n"+r"{0}".format(t.content)+"============\n原推特地址为：\n"+r"https://twitter.com/{0}/status/{1}".format(t.username[1:-1],t.address))
+                await bot.send_group_msg(group_id=valid_group, message="{0} 小粥在{1}分{2}秒前发布了新推特：".format(t.id, gap_minutes, gap_seconds)+"\n"+r"{0}".format(t.content)+"============\n原推特地址为：\n"+r"https://twitter.com/{0}/status/{1}".format(t.username[1:-1],t.address))
                 if limit > 15:
                     await bot.send_group_msg(group_id=valid_group, message="==超出发送允许范围 运行中止==")
                     break

@@ -2,3 +2,5 @@
 *.pyc
 
 plugins/call/__pycache__/
+
+plugins/twitter/notification/__pycache__/
