@@ -2,6 +2,15 @@
 import nonebot
 import config
 from os import path
+
+
+'''
+
+nonebot封装的CQHTTP插件
+
+'''
+
+
 if __name__ == "__main__":
     nonebot.init(config)
     nonebot.load_builtin_plugins()

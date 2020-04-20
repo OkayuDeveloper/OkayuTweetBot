@@ -6,8 +6,15 @@ import datetime
 import random
 import math
 import traceback
+import json
+import sys
+d = os.path.dirname(__file__)
+home_path = os.path.dirname(os.path.dirname(os.path.dirname(d)))
+sys.path.append(home_path)
 
-monitor_user = 'nekomataokayu'
+from plugins.configure.configuration import monitor_user
+
+
 #monitor_user = 'Cyame1121'
 class twintError(Exception):
     def __init__(self,value):
@@ -21,23 +28,23 @@ class twitterList:
         self.tList = list(inlist)
         pass
 
-# tweet封装 由txt读取得来 使用其repr或str方法可直接打印至消息
-# 请勿使用直接调用 session.send不支持自动调用repr
+# tweet封装 由JSON读取得来 使用repr返回
+# 请勿使用直接调用 session.send不支持自动调用str
 class twitterInfo(object):
     """docstring fortwitterInfo."""
-    #构造 直接传入读取自twint写入的行即可
-    def __init__(self, line):
-        self.address, self.date, self.time, self.timezone, self.username, self.content = line.split(' ',5)
-        self.id = hex(int(self.address))[10:]
+    #构造 直接传入读取自twint写入的行 在内部通过读取JSON转化
+    def __init__(self, dict):
+        self.info = json.loads(dict)
+        self.code = hex(int(self.info['id']))[10:]
     #调用 用于独立作为控制台调试模块时使用
-    def __repr__(self):
-        # if self.username == "<nekomataokayu>":
-        return("{0} 小粥在{1} {2}发布了新推特：".format(self.id, self.date, self.time)+"\n"+r"{0}".format(self.content)+"============\n原推特地址为：\n"+r"https://twitter.com/{0}/status/{1}".format(self.username[1:-1],self.address))
-        # else:
-        #     return("===暂不支持其他用户===\n臭弟弟爬")#笑
-    #打印 返回字符串值(不做独立构造 同repr)
     def __str__(self):
-        return repr(self)
+        return str(self.info)
+    def getTweet(self):
+        return self.info["tweet"] 
+    def getCode(self):
+        return self.code
+    def getDateAndTime(self):
+        return "{} {}".format(self.info["date"],self.info["time"])
 
 # 初始化监控对象
 # 参数表
@@ -49,20 +56,20 @@ def initialSearch(monitor_user,current_day,save_file):
     conf.Username = monitor_user
     conf.Output = save_file
     conf.Since = "{0} 00:00:00".format(current_day)
+    conf.Store_json = True
     #获取指定日期之后的推文筛选条件
     return conf
 
 def getYesterday():
-    yesterday = datetime.date.today() + datetime.timedelta(-2)
-    #指定获取时间为昨天凌晨(避免凌晨前后推文覆盖)
-    # Release: 改为一周
+    #获取24小时内推文
+    yesterday = datetime.date.today() + datetime.timedelta(-1)
     return yesterday
 
 # 利用twint包进行推特捕获
 # param save_file:存储为(根目录)
 def getTwitterFromTwint(save_file):
     #声明容器
-    getList = twitterList([])
+    #getList = twitterList([])
     #获取昨天日期
     targetDay = getYesterday()
     #构造搜索
@@ -72,7 +79,7 @@ def getTwitterFromTwint(save_file):
         twint.run.Search(thisSearch)
     except:
         traceback.print_exc()
-        raise twintError("==GET ERROR==")
+        raise twintError("=============GET ERROR WHEN CONNECT TO TWINT=============")
 
     return save_file
 
@@ -82,10 +89,10 @@ def getTwitterFromTwint(save_file):
 def configTwitterFromFile(read_file):
     getList = twitterList([])
     if not os.path.exists(read_file):
-        print("NO TWEET FOUND")
+        print("======FILE NOT FOUND=======")
         return getList
-    with open(file = read_file,mode='r',encoding='utf-8') as new:
-        for line in new.readlines():
+    with open(file = read_file,mode='r',encoding='utf-8') as target:
+        for line in target.readlines():
             if line == '\n' or line == '':
                 pass
             else:
@@ -95,18 +102,18 @@ def configTwitterFromFile(read_file):
 
 # 获取新推特(旧方法重构)
 def get_new_twitter():
-    newTweetFile = getTwitterFromTwint("newTweet.txt")
+    newTweetFile = getTwitterFromTwint("newTweet.json")
     newTweetList = configTwitterFromFile(newTweetFile)
     return newTweetList
 
 # 获取新推特(旧方法重构)
 def get_old_twitter():
     # Read file
-    if os.path.exists("oldTweet.txt"):
-        oldTweetList = configTwitterFromFile("oldTweet.txt")
+    if os.path.exists("oldTweet.json"):
+        oldTweetList = configTwitterFromFile("oldTweet.json")
+        return oldTweetList
     else:
         return twitterList([])
-    return oldTweetList
 
 # 获取新增推特(新方法：从文件)
 def File_compare(oldTweetFile,newTweetFile):

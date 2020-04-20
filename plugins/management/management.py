@@ -5,7 +5,17 @@ from aiocqhttp import *
 import nonebot.permission as perm
 from plugins.configure.configuration import *
 
-#bot = nonebot.get_bot()
+'''
+==管理员命令模块==
+
+主要功能子模块包含：
+启用/停用本Bot
+自动欢迎新成员
+手动欢迎新成员
+成员管理
+
+'''
+#### 启用/停用Bot ####
 
 @nonebot.on_command("admin",aliases=("管理员",),only_to_me=False,permission=perm.SUPERUSER)
 async def offon(session: nonebot.CommandSession):
@@ -18,18 +28,14 @@ async def offon(session: nonebot.CommandSession):
         await session.send("功能已启用")
     pass
 
+#### 欢迎群成员 ####
+
 @nonebot.on_notice("group_increase")
 async def welcome(session: nonebot.NoticeSession):
     bot = nonebot.get_bot()
     #newass = session.user_id
     newman = session.event['user_id']
     await bot.send_group_msg(group_id=valid_group,message='欢迎新龙！！进群首先请查看群公告，阅读「猫又小粥字幕组组规」并完成如下操作：\n1、修改群昵称为：【职位】ID\n2、再次浏览群公告，熟悉各表单及各项工具的使用，并于工作表中“粥组人口普查”中登记注册\n3、打开群空间，打开规范与资料文件夹，浏览“共通”与所“申请职位”对应文件夹全部内容，并获取相关资料')
-#     await bot.send_group_msg(group_id=valid_group,message='''===============
-# 注意：请勿在未授权的情况下对外透露任何组内相关内容
-# （包括进度、消息、资料等）
-# ===============
-# 自我介绍一下，我是本群最菜群友，负责日常推特搬运及其他辅助管理工作，请多指教
-# 粥组欢迎你的到来！[CQ:at,qq=(beingOperateQQ)]''')
     await bot.send_group_msg(group_id=valid_group,message='''===============
 注意：请勿在未授权的情况下对外透露任何组内相关内容
 （包括进度、消息、资料等）
@@ -62,6 +68,9 @@ async def force_welcome(session: nonebot.CommandSession):
 自我介绍一下，我是本群最菜群友，负责日常推特搬运及其他辅助管理工作，请多指教
 粥组欢迎你的到来！''')
 
+
+#### 成员管理 ####
+# TODO
 
 @nonebot.on_command("addlist", aliases = ("可选职位",), only_to_me = False)
 async def add_list(session: nonebot.CommandSession):

@@ -3,6 +3,15 @@ import nonebot
 from plugins.configure.configuration import *
 
 
+'''
+
+供全体成员使用的呼叫管理员模块
+
+
+'''
+
+#TODO 延时呼叫
+
 @nonebot.on_command("夕云",aliases = ("夕雲","yuugumo","xiyun",),only_to_me = False)
 async def yuugumo(session: nonebot.CommandSession):
     #id = nonebot.session.user_id

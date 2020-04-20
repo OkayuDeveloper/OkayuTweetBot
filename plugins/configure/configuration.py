@@ -14,7 +14,7 @@ monitor_nickname = "小粥"
 #推特用户名（为所监控推特用户地址[重要]）
 monitor_user = "nekomataokayu"
 #接入工坊烤推机路径（涉及烤推功能[重要]）
-matsuri_translation_path = "D:/EclipseJavaWorkspace/matsuri_translation/Matsuri_translation"
+#matsuri_translation_path = "D:/EclipseJavaWorkspace/matsuri_translation/Matsuri_translation"
 #功能开关（当关闭时 除开启开关外 其他一切功能禁用）
 #待生效
 function_press = True
