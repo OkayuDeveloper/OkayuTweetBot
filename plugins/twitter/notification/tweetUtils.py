@@ -8,6 +8,7 @@ import math
 import traceback
 import json
 import sys
+
 d = os.path.dirname(__file__)
 home_path = os.path.dirname(os.path.dirname(os.path.dirname(d)))
 sys.path.append(home_path)
@@ -120,19 +121,21 @@ def File_compare(oldTweetFile,newTweetFile):
     #已存在推文地址ID
     oldAddressList = []
     updateTweetList = []
-    update_path = "updateTweet.txt"
+    update_path = "updateTweet.json"
     with open(file = oldTweetFile, mode='r',encoding='utf-8') as o:
         for line in o.readlines():
             if line == '\n' or line == '':
                 continue
             else:
-                oldAddressList.append(line.split()[0])
+                #TODO oldAddressList.append(line.split()[0])
+                pass
     with open(file = newTweetFile, mode='r',encoding='utf-8') as n:
         for line in n.readlines():
             if line == '\n' or line == '':
                 continue
             else:
-                temp = line.split()[0]
+                #TODO temp = line.split()[0]
+                temp = 0
                 if not temp in oldAddressList:
                     #New
                     updateTweetList.append(line)
@@ -142,77 +145,38 @@ def File_compare(oldTweetFile,newTweetFile):
     return update_path
 
 # 获取新增推特(新方法)
-def get_update_twitter():
-    updateTweetList = configTwitterFromFile("updateTweet.txt")
+def get_update_twitter(updateFile = "updateTweet.json"):
+    updateTweetList = configTwitterFromFile(updateFile)
     return updateTweetList
 
-# 每次生成UPDATE后迭代
-def fileIterator(oldTweetFile = 'oldTweet.txt',newTweetFile = 'newTweet.txt'):
-    os.system("mv -f {0} {1}".format(newTweetFile,oldTweetFile))
-
 # 当无更新时删除新增避免重复获取
-def fileExpire(newTweetFile = 'newTweet.txt'):
-    os.system("rm {0}".format(newTweetFile))
+def removeFile(targetFile):
+    pass
 
-# 获取新增推特(旧方法)
-# 读入twitterList 返回twitterList
-def compare(oldTweetList,newTweetList):
-    updateList = []
-    addressList = []
-    for oldTweet in oldTweetList.tList:
-        addressList.append(oldTweet.address)
-    for tweet in newTweetList.tList:
-        if not tweet.address in addressList:
-            #New
-            updateList.append(tweet)
-    updateTweet = twitterList(updateList)
-    return updateTweet
-
-# 主函数旧方法重构
-def automation():
-    oldTweet = get_old_twitter()
-    newTweet = get_new_twitter()
-    updateTweet = twitterList([])
-    if  (not newTweet.tList) :
-        #New Day
-        fileExpire()
-    elif (not oldTweet.tList) or (oldTweet.tList[-1].address != newTweet.tList[-1].address):
-        #Changed
-        updateTweet = compare(oldTweet,newTweet)
-        oldTweet = newTweet
-        fileIterator()
-    else:
-        fileExpire()
-    return updateTweet, oldTweet
 
 # 获取过程
 def getProcess():
-    newTweetFile = ''
-    oldTweetFile = ''
-    try:
-        newTweetFile = getTwitterFromTwint("newTweet.txt")
-        oldTweetFile = "oldTweet.txt"
-        if not os.path.exists(newTweetFile):
-            #EMPTY
-            empty = open(newTweetFile,mode='w+',encoding='utf-8')
-            empty.close()
-        if os.path.exists(oldTweetFile):
-            updateTweetFile = File_compare(oldTweetFile,newTweetFile)
-        fileIterator(oldTweetFile,newTweetFile)
-
-    except BaseException:
-        print(BaseException)
-        traceback.print_exc()
-        if os.path.exists(newTweetFile):
-            fileExpire(newTweetFile)
+    newTweetFile = "newTweet.json"
+    newTweetFile = getTwitterFromTwint("newTweet.json")
+    oldTweetFile = "oldTweet.json"
+    if not os.path.exists(newTweetFile):
+        #EMPTY
+        empty = open(newTweetFile,mode='w+',encoding='utf-8')
+        empty.close()
+    if not os.path.exists(oldTweetFile):
+        #EMPTY
+        empty = open(oldTweetFile,mode='w+',encoding='utf-8')
+        empty.close()
+        return
+        
+    #COMPARE
+    #UPDATE
+    #UPDATE-ADD
 
 
-        return False
-
-    return True
 
 # 推送过程
 def readProcess():
-    updateList = get_update_twitter()
+    updateList = get_update_twitter("updateTweet.json")
     oldList = get_old_twitter()
     return updateList,oldList
