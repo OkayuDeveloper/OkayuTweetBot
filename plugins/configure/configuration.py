@@ -7,7 +7,19 @@
 
 '''
 import sys
+import json
 
+configFile = open("general.json",'r',encoding='utf-8')
+rawconfig = json.load(configFile)
+configFile.close()
+
+
+# class config :
+
+#     def __init__(self, dict):
+        
+        
+#         pass
 #目标群(自动推送服务的发送目标)
 valid_group = 1094163087
 #推特昵称（作为推文推送的Title内容）
