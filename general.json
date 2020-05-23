@@ -1,0 +1,15 @@
+{
+    "okayu":{
+        "group_id": 1094163087,
+        "nickname":"小粥",
+        "user":"nekomataokayu",
+        "enable":true,
+        "contact":{
+            "yuugumo":296172851,
+            "coffee":920239562,
+            "hibiki":375353085,
+            "fish":920337594
+        },
+        "memberlist":"okayu_member.txt"
+    }
+}
