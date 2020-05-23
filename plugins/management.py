@@ -3,7 +3,7 @@ import nonebot
 import config
 from aiocqhttp import *
 import nonebot.permission as perm
-from plugins.configure.configuration import *
+from config import valid_group, general_config
 
 '''
 ==管理员命令模块==
