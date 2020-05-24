@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 import nonebot
-import config
+#import config
 from aiocqhttp import *
 import nonebot.permission as perm
-from config import valid_group, general_config
+from plugins.config import valid_group, general_config
 
 '''
 ==管理员命令模块==
