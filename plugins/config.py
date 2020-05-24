@@ -53,13 +53,13 @@ general_config = {
     #职位索引存储位置
     'memberList':"member.txt",
     #欢迎新人模板
-    'welcome_template':'欢迎新龙',
+    'welcome_template':'欢迎新龙{at}',
     #留言消息模板
     'message_template':'{called},{act}刚才叫你，他说：{message}',
     #广播呼叫模板
     'calling_template':'{member}醒醒,{actor}叫你干活啦{message}',
     #定时催活模板
     'death_template':'{member}你醒啦,你{message}交了吗(噔噔咚)',
-    'pa_template':['我爬 我现在就爬','我爪巴','你给爷爬','呜呜呜别骂了 再骂BOT就傻了']
+    'repeataftertime':5
 
 }
