@@ -15,18 +15,6 @@ from plugins.config import valid_group, general_config
 成员管理
 
 '''
-#### 启用/停用Bot ####
-
-@nonebot.on_command("admin",aliases=("管理员",),only_to_me=False,permission=perm.SUPERUSER)
-async def offon(session: nonebot.CommandSession):
-    global function_press
-    if function_press:
-        function_press = False
-        await session.send("功能已停用")
-    else:
-        function_press = True
-        await session.send("功能已启用")
-    pass
 
 #### 欢迎群成员 ####
 
