@@ -1,7 +1,10 @@
 import sys
-valid_group = 1094163087
+#valid_group = 1094163087
 
+'''
+非推特相关功能config 迁移时可集成
 
+'''
 general_config = {
     #复读机
     'enable_repeat':True,

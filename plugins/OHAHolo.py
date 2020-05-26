@@ -2,6 +2,12 @@ from nonebot import CommandSession, on_command
 import datetime
 import asyncio
 import random
+'''
+早安Holo占卜模拟
+
+慢慢添加条目就好
+
+'''
 Holomembers = {
     '时乃空',
     '萝卜子',

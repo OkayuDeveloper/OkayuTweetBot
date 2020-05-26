@@ -5,7 +5,13 @@ import json
 import random
 from plugins.config import general_config as conf
 from template import pa_template
-# on_command 装饰器将函数声明为一个命令处理器
+'''
+静态自然语言回复模块
+
+早安/晚安
+爬
+
+'''
 @on_command('pa',only_to_me = False)
 async def pa(session: CommandSession):
     # stripped_arg = session.current_arg_text.strip()
