@@ -79,7 +79,7 @@ async def note(session: CommandSession):
     if message_type == 'group':
         # <command> <who> <dowhat> <ddlat>
         if len(arguments) != 4:
-            await session.send("参数个数错误")
+            await session.send("参数个数错误 是不是格式错了> <\n!ddl <@任务执行人> <任务内容> <DDL时间>")
             return
         if 'CQ:at' in arguments[1]:
             planned_id = arguments[1].split("qq=")[1][:-1]
@@ -103,7 +103,7 @@ async def note(session: CommandSession):
             ddl_datetime = datetime.datetime.fromisoformat(arguments[3]+' 20:00:00')
             pass
         else:
-            await session.send("日期格式有误")
+            await session.send("日期格式有误 请以<YYYY-MM-DD> 或 <YYYY-MM-DD hh:mm:ss>输入")
         
         group_id = str(session.event['group_id'])
         log = [send_id,planned_id,ddl_content,ddl_datetime]
@@ -115,6 +115,7 @@ async def note(session: CommandSession):
     elif message_type == 'private':
         # <command> <group> <who> <dowhat> <ddlat>
         # TODO
+        if len()
         pass
     # print(session.event)
     # print(arguments)
