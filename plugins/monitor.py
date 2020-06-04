@@ -115,7 +115,7 @@ async def note(session: CommandSession):
     elif message_type == 'private':
         # <command> <group> <who> <dowhat> <ddlat>
         # TODO
-        if len()
+        # if len()
         pass
     # print(session.event)
     # print(arguments)
