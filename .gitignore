@@ -5,3 +5,5 @@ plugins/call/__pycache__/
 
 plugins/twitter/notification/__pycache__/
 .vscode/settings.json
+.idea
+__pycache__
