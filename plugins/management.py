@@ -14,6 +14,7 @@ import asyncio
 
 '''
 
+
 #### 欢迎群成员 ####
 
 @nonebot.on_notice("group_increase")

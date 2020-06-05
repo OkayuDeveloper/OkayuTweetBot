@@ -135,8 +135,7 @@ async def _(session:CommandSession):
             pick_zodiac = zodiac.pop(random.randint(0,len(zodiac)-1))
             pick_uranai = uranai.pop(random.randint(0,len(uranai)-1))
             message += "第{place}位 {zodiac} {holo}\n{ura}\n".format(place=place,zodiac=pick_zodiac,holo=pick_holomember,ura=pick_uranai)
-            #done[place] = "幸运指数第{place}位 {zodiac}\n幸运Hololiver {holo}\n今日占卜运势 {ura}".format(place=place,zodiac=pick_zodiac,holo=pick_holomember,ura=pick_uranai)
-        #message = "\n".join(done)
+            
         done[today] = message
         await session.send(done[today])
 

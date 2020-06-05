@@ -16,14 +16,14 @@ async def usage(session: CommandSession):
                 await session.send(p.usage)
 
 
-on_command("off",aliases=("关闭功能"),permission = permission.SUPERUSER,only_to_me=True)
-async def offfunction(session):
-    plugins = list(nonebot.get_loaded_plugins)
-    arg = session.current_arg_text.strip().lower()
-    if not arg:
-        await session.send("要关闭哪个功能鸭~\n请按照!off <功能名>的格式进行操作\n功能名列表可以使用usage命令查看QuQ")
-    else:
-        for p in plugins:
-            if p.name.lower() == arg:
-                #await 
-                pass
+# @on_command("off",aliases=("关闭功能"),permission = permission.SUPERUSER,only_to_me=True)
+# async def offfunction(session):
+#     plugins = list(nonebot.get_loaded_plugins)
+#     arg = session.current_arg_text.strip().lower()
+#     if not arg:
+#         await session.send("要关闭哪个功能鸭~\n请按照!off <功能名>的格式进行操作\n功能名列表可以使用usage命令查看QuQ")
+#     else:
+#         for p in plugins:
+#             if p.name.lower() == arg:
+#                 #await 
+#                 pass

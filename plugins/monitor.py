@@ -60,63 +60,63 @@ async def _(event: aiocqhttp.Event):
         lastlog[thisgroup][1] = 0
 
     ## 留言
-    if not thisgroup in leaving_message.keys():
-        leaving_message[thisgroup] = list()
+    # if not thisgroup in leaving_message.keys():
+    #     leaving_message[thisgroup] = list()
     
 
 
-@on_command("note",aliases=("留言",),only_to_me = False)
-async def note(session: CommandSession):
-    pass
+# @on_command("note",aliases=("留言",),only_to_me = False)
+# async def note(session: CommandSession):
+#     pass
 
 
-@on_command('ddl',aliases=("死亡笔记",),only_to_me = False)
-async def note(session: CommandSession):
-    #print(session.event)
-    message_type = session.event['message_type']
-    arguments = session.event['raw_message'].split()
-    send_id = session.event['sender']['user_id']
-    if message_type == 'group':
-        # <command> <who> <dowhat> <ddlat>
-        if len(arguments) != 4:
-            await session.send("参数个数错误 是不是格式错了> <\n!ddl <@任务执行人> <任务内容> <DDL时间>")
-            return
-        if 'CQ:at' in arguments[1]:
-            planned_id = arguments[1].split("qq=")[1][:-1]
-            print("id = ",planned_id)
-        elif is_number(arguments[1]):
-            planned_id = arguments[1]
-        else:
-            #NAME
-            pass
-        if arguments[2] == '':
-            await session.send("未指定内容")
-            return
-        ddl_content = arguments[2]
+# @on_command('ddl',aliases=("死亡笔记",),only_to_me = False)
+# async def note(session: CommandSession):
+#     #print(session.event)
+#     message_type = session.event['message_type']
+#     arguments = session.event['raw_message'].split()
+#     send_id = session.event['sender']['user_id']
+#     if message_type == 'group':
+#         # <command> <who> <dowhat> <ddlat>
+#         if len(arguments) != 4:
+#             await session.send("参数个数错误 是不是格式错了> <\n!ddl <@任务执行人> <任务内容> <DDL时间>")
+#             return
+#         if 'CQ:at' in arguments[1]:
+#             planned_id = arguments[1].split("qq=")[1][:-1]
+#             print("id = ",planned_id)
+#         elif is_number(arguments[1]):
+#             planned_id = arguments[1]
+#         else:
+#             #NAME
+#             pass
+#         if arguments[2] == '':
+#             await session.send("未指定内容")
+#             return
+#         ddl_content = arguments[2]
 
-        if ':' in arguments[3]:
-            ## YYYY-MM-DD HH:MM
-            ddl_datetime = datetime.datetime.fromisoformat(arguments[3])
-            pass
-        elif '-' in arguments[3]:
-            ## YYYY-MM-DD
-            ddl_datetime = datetime.datetime.fromisoformat(arguments[3]+' 20:00:00')
-            pass
-        else:
-            await session.send("日期格式有误 请以<YYYY-MM-DD> 或 <YYYY-MM-DD hh:mm:ss>输入")
+#         if ':' in arguments[3]:
+#             ## YYYY-MM-DD HH:MM
+#             ddl_datetime = datetime.datetime.fromisoformat(arguments[3])
+#             pass
+#         elif '-' in arguments[3]:
+#             ## YYYY-MM-DD
+#             ddl_datetime = datetime.datetime.fromisoformat(arguments[3]+' 20:00:00')
+#             pass
+#         else:
+#             await session.send("日期格式有误 请以<YYYY-MM-DD> 或 <YYYY-MM-DD hh:mm:ss>输入")
         
-        group_id = str(session.event['group_id'])
-        log = [send_id,planned_id,ddl_content,ddl_datetime]
-        if group_id in ddl_message.keys():
-            ddl_message[group_id] = list()
-        ddl_message[group_id].append(log)
+#         group_id = str(session.event['group_id'])
+#         log = [send_id,planned_id,ddl_content,ddl_datetime]
+#         if group_id in ddl_message.keys():
+#             ddl_message[group_id] = list()
+#         ddl_message[group_id].append(log)
         
-        #print(log)
-    elif message_type == 'private':
-        # <command> <group> <who> <dowhat> <ddlat>
-        # TODO
-        # if len()
-        pass
-    # print(session.event)
-    # print(arguments)
-    # print(message_type)
+#         #print(log)
+#     elif message_type == 'private':
+#         # <command> <group> <who> <dowhat> <ddlat>
+#         # TODO
+#         # if len()
+#         pass
+#     # print(session.event)
+#     # print(arguments)
+#     # print(message_type)

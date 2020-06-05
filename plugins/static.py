@@ -53,6 +53,8 @@ async def _(session: NLPSession):
     await asyncio.sleep(0.2)
     if 'bot' in msg.lower():
         return IntentCommand(90.0,'pa')
+    elif '!' or '！' in msg.lower():
+        return IntentCommand(30.0,'pa')
     else:
         return IntentCommand(70.0,'pa')
     pass
