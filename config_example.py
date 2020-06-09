@@ -24,3 +24,6 @@ default_bot_QQ : int = 12345
 feedback_push_switch : bool = True #推送反馈信息
 error_push_switch : bool = True #推送错误信息
 bot_waring_printID : int = 12345
+
+#语音发送映射
+music_path = r"file:///E:\CQ\python-okayu_two\cache"
