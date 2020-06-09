@@ -15,7 +15,7 @@ def headdeal(session: CommandSession):
     return True
 
 # on_command 装饰器将函数声明为一个命令处理器
-@on_command('roll',aliases=['掷骰','掷骰子','骰子'],permission=perm.SUPERUSER | perm.PRIVATE_FRIEND | perm.GROUP_ADMIN | perm.GROUP_OWNER,only_to_me = False)
+@on_command('roll',aliases=['掷骰','掷骰子','骰子'],only_to_me = False)
 async def roll(session: CommandSession):
     if not headdeal(session):
         return
@@ -58,7 +58,7 @@ async def roll(session: CommandSession):
         return
     await session.send(addmsg + msg)
 
-@on_command('rollhelp',aliases=['掷骰帮助','掷骰子帮助','骰子帮助'],permission=perm.SUPERUSER | perm.PRIVATE_FRIEND | perm.GROUP_ADMIN | perm.GROUP_OWNER,only_to_me = False)
+@on_command('rollhelp',aliases=['掷骰帮助','掷骰子帮助','骰子帮助'],only_to_me = False)
 async def rollhelp(session: CommandSession):
     if not headdeal(session):
         return

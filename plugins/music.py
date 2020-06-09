@@ -18,7 +18,7 @@ def headdeal(session: CommandSession):
     if session.event['message_type'] == "group" and session.event.sub_type != 'normal':
         return False
     return True
-@on_command('希望之花',permission=perm.SUPERUSER | perm.PRIVATE_FRIEND | perm.GROUP_ADMIN | perm.GROUP_OWNER,only_to_me = False)
+@on_command('希望之花',only_to_me = False)
 async def xwzh(session: CommandSession):
     if not headdeal(session):
         return
@@ -31,7 +31,7 @@ def deal_filename(stripped_arg):
         return stripped_arg + ".mp3"
     return ''
 @on_command('语音',aliases=['rec','REC'],permission=perm.SUPERUSER | perm.PRIVATE_FRIEND | perm.GROUP_ADMIN | perm.GROUP_OWNER,only_to_me = False)
-async def recode(session: CommandSession):
+async def record(session: CommandSession):
     if not headdeal(session):
         return
     stripped_arg = session.current_arg_text.strip()
