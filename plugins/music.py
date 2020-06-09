@@ -12,18 +12,25 @@ __plugin_usage__ = r"""
 """
 check_path('music')
 music_path = path.join(config.music_path,'music','')
-#1376882360 希望之花 163
+
 #预处理
 def headdeal(session: CommandSession):
     if session.event['message_type'] == "group" and session.event.sub_type != 'normal':
         return False
     return True
+
+#1376882360 希望之花 163
+#442589034 RAGE OF DUST 卡其脱离态 163
 @on_command('希望之花',only_to_me = False)
 async def xwzh(session: CommandSession):
     if not headdeal(session):
         return
     await session.send("[CQ:music,type=163,id=1376882360]")
-
+@on_command('卡其脱离态',only_to_me = False)
+async def kqtlt(session: CommandSession):
+    if not headdeal(session):
+        return
+    await session.send("[CQ:music,type=163,id=442589034]")
 def deal_filename(stripped_arg):
     if path.exists(path.join('cache','music',stripped_arg)):
         return stripped_arg

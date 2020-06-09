@@ -39,13 +39,14 @@ async def roll(session: CommandSession):
             addmsg = "---{0}---\n".format(res[0])
         else:
             addmsg = res[0] + '#'
-    
-    if stripped_arg[:1] in ('<','>','!'):
+
+    if stripped_arg == '':
+        stripped_arg = '1d100>50'
+    elif stripped_arg[:1] in ('<','>','!'):
         stripped_arg = '1d100' + stripped_arg
     elif stripped_arg.isdecimal():
         stripped_arg = '1d100>' + stripped_arg
-    else:
-        stripped_arg = '1d100>50'
+
     try:
         msg = match_roll(nick,stripped_arg)
         if msg == '':
