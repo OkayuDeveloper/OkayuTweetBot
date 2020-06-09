@@ -59,7 +59,7 @@ async def roll(session: CommandSession):
         return
     await session.send(addmsg + msg)
 
-@on_command('rollhelp',aliases=['掷骰帮助','掷骰子帮助','骰子帮助'],only_to_me = False)
+@on_command('rollhelp',aliases=['掷骰帮助','掷骰子帮助','骰子帮助','骰娘帮助'],only_to_me = False)
 async def rollhelp(session: CommandSession):
     if not headdeal(session):
         return
