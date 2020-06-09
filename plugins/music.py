@@ -37,7 +37,7 @@ def deal_filename(stripped_arg):
     if path.exists(path.join('cache','music',stripped_arg + ".mp3")):
         return stripped_arg + ".mp3"
     return ''
-@on_command('语音',aliases=['rec','REC'],permission=perm.SUPERUSER | perm.PRIVATE_FRIEND | perm.GROUP_ADMIN | perm.GROUP_OWNER,only_to_me = False)
+@on_command('语音',aliases=['rec','REC'],only_to_me = False)
 async def record(session: CommandSession):
     if not headdeal(session):
         return
