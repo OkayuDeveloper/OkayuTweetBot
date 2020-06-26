@@ -54,7 +54,7 @@ async def _(event: aiocqhttp.Event):
         lastlog[thisgroup] = (previousmessage,1)
     else:
         lastlog[thisgroup] = (previousmessage,lastlog[thisgroup][1]+1)
-    print(lastlog[thisgroup])
+    #print(lastlog[thisgroup])
     if lastlog[thisgroup][1] >= times:
         await bot.send_group_msg(group_id=int(thisgroup),message=previousmessage)
         lastlog[thisgroup][1] = 0

@@ -47,7 +47,7 @@ async def night(session: CommandSession):
     pass
 
 @on_natural_language(keywords={'爬','爪巴'})
-async def _(session: NLPSession):
+async def nl_pa(session: NLPSession):
     msg = session.msg_text.strip()
     #count = 0
     await asyncio.sleep(0.2)
@@ -60,7 +60,7 @@ async def _(session: NLPSession):
     pass
 
 @on_natural_language(keywords={'早安','早'})
-async def _(session: NLPSession):
+async def nl_mn(session: NLPSession):
     #msg = session.msg_text.strip()
     #count = 0
     now = datetime.datetime.now().strftime('%H')
@@ -71,7 +71,7 @@ async def _(session: NLPSession):
     pass
 
 @on_natural_language(keywords={'晚安','睡了'})
-async def _(session: NLPSession):
+async def nl_gn(session: NLPSession):
     #msg = session.msg_text.strip()
     #count = 0
     now = datetime.datetime.now().strftime('%H')

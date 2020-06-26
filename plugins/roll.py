@@ -20,9 +20,7 @@ async def roll(session: CommandSession):
     if not headdeal(session):
         return
     stripped_arg = session.current_arg_text.strip()
-    #if stripped_arg == '':
-    #    await session.send('参数为空！')
-    #    return
+
     logger.info(CQsessionToStr(session))
     event = session.event
     nick = event['user_id']
@@ -31,7 +29,9 @@ async def roll(session: CommandSession):
             nick = event['sender']['card']
         elif 'nickname' in event.sender and event['sender']['nickname'] != '':
             nick = event['sender']['nickname']
+    #公式
     res = stripped_arg.split('#',1)
+    #注释合成 
     addmsg = ''
     if len(res) == 2:
         stripped_arg = res[1]
@@ -39,7 +39,7 @@ async def roll(session: CommandSession):
             addmsg = "---{0}---\n".format(res[0])
         else:
             addmsg = res[0] + '#'
-
+    #Default
     if stripped_arg == '':
         stripped_arg = '1d100<50'
     elif stripped_arg[:1] in ('<','>','!'):
